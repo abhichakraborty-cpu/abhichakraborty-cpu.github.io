@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Date Night Invite</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #f7f0f6;
+  --surface: #ffffff;
+  --fg: #2a1832;
+  --muted: #6f5b78;
+  --line: #e4d6e6;
+  --accent: #c2275f;
+  --accent-fg: #ffffff;
+  --accent-soft: #fbe3ec;
+  --ok: #1f7a58;
+  --ok-soft: #dff3ea;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1020; --surface: #251730; --fg: #f5eaf6; --muted: #b7a3c0;
+    --line: #3d2a4a; --accent: #ff7aa6; --accent-fg: #2a0b17;
+    --accent-soft: #46202f; --ok: #62d3a4; --ok-soft: #173b2e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a1020; --surface: #251730; --fg: #f5eaf6; --muted: #b7a3c0;
+  --line: #3d2a4a; --accent: #ff7aa6; --accent-fg: #2a0b17;
+  --accent-soft: #46202f; --ok: #62d3a4; --ok-soft: #173b2e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  margin: 0;
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+h1, h2 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2rem, 8vw, 2.9rem); line-height: 1.05; font-weight: 800; }
+h2 { font-size: 1.25rem; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.lede { color: var(--muted); max-width: 46ch; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 22px; }
+[hidden] { display: none !important; }
+
+.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn {
+  font: inherit; font-weight: 600; cursor: pointer; border-radius: 14px; padding: 15px 16px;
+  border: 2px solid var(--accent); background: transparent; color: var(--accent);
+}
+.btn.primary { background: var(--accent); color: var(--accent-fg); }
+.btn.quiet { border-color: var(--line); color: var(--fg); }
+.btn:focus-visible, .chip input:focus-visible + span, .seg input:focus-visible + span, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+.btn:active { transform: translateY(1px); }
+
+.field { display: flex; flex-direction: column; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.field > legend, .field > label.q { font-weight: 600; padding: 0; }
+.hint { font-size: 0.85rem; color: var(--muted); font-weight: 400; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
+
+input[type="date"], input[type="time"], textarea {
+  font: inherit; color: var(--fg); background: var(--bg); border: 1.5px solid var(--line);
+  border-radius: 12px; padding: 12px 14px; width: 100%; min-width: 0;
+}
+textarea { resize: vertical; min-height: 92px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input, .seg input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip span {
+  display: inline-block; padding: 9px 15px; border-radius: 999px; border: 1.5px solid var(--line);
+  background: var(--bg); font-weight: 500; user-select: none;
+}
+.chip input:checked + span { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+.yn { display: flex; flex-direction: column; gap: 14px; }
+.yn-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.yn-row .label { min-width: 0; flex: 1; }
+.seg { display: inline-flex; border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; flex: none; }
+.seg label { position: relative; }
+.seg span { display: block; padding: 8px 16px; font-weight: 600; background: var(--bg); color: var(--muted); min-width: 56px; text-align: center; }
+.seg label + label span { border-left: 1.5px solid var(--line); }
+.seg input[value="yes"]:checked + span { background: var(--ok-soft); color: var(--ok); }
+.seg input[value="no"]:checked + span { background: var(--accent-soft); color: var(--accent); }
+
+.range-line { display: flex; align-items: center; gap: 14px; }
+input[type="range"] { flex: 1; min-width: 0; accent-color: var(--accent); }
+.range-val { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; min-width: 2.2ch; text-align: right; font-variant-numeric: tabular-nums; color: var(--accent); }
+
+.status { padding: 12px 14px; border-radius: 12px; background: var(--accent-soft); color: var(--fg); font-size: 0.92rem; }
+.status.ok { background: var(--ok-soft); }
+
+.summary { white-space: pre-wrap; background: var(--bg); border: 1px dashed var(--line); border-radius: 12px; padding: 14px; font-size: 0.92rem; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.actions .btn { flex: 1 1 180px; text-align: center; text-decoration: none; }
+
+.back { align-self: flex-start; background: none; border: 0; color: var(--muted); font: inherit; cursor: pointer; padding: 0; text-decoration: underline; }
+.foot { font-size: 0.8rem; color: var(--muted); text-align: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .panel { animation: rise 0.35s ease both; }
+  @keyframes rise { from { opacity: 0.001; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <p class="eyebrow">An invitation from Avi</p>
+    <h1>Will you go on a date with me?</h1>
+    <p class="lede">Answer a few quick questions and I'll plan everything around what you pick.</p>
+  </header>
+
+  <section id="s-ask" class="panel" aria-labelledby="ask-h">
+    <h2 id="ask-h">First, the big question</h2>
+    <div class="choice">
+      <button class="btn primary" id="btn-yes" type="button">Yes, I'm in</button>
+      <button class="btn quiet" id="btn-no" type="button">Not this time</button>
+    </div>
+  </section>
+
+  <form id="s-yes" class="panel" hidden novalidate>
+    <h2>Great. Let's plan it.</h2>
+
+    <div class="row2">
+      <div class="field">
+        <label class="q" for="f-date">Which day?</label>
+        <input type="date" id="f-date" required>
+      </div>
+      <div class="field">
+        <label class="q" for="f-time">What time?</label>
+        <input type="time" id="f-time" value="19:00" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="q" for="f-alt">Backup day <span class="hint">(optional)</span></label>
+      <input type="date" id="f-alt">
+    </div>
+
+    <fieldset class="field">
+      <legend>What kind of date?</legend>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="kind" value="Dinner"><span>Dinner</span></label>
+        <label class="chip"><input type="radio" name="kind" value="Movie night"><span>Movie night</span></label>
+        <label class="chip"><input type="radio" name="kind" value="Coffee and a walk"><span>Coffee and a walk</span></label>
+        <label class="chip"><input type="radio" name="kind" value="Street food crawl"><span>Street food crawl</span></label>
+        <label class="chip"><input type="radio" name="kind" value="Surprise me"><span>Surprise me</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="field">
+      <legend>What are you craving? <span class="hint">Pick any</span></legend>
+      <div class="chips">
+        <label class="chip"><input type="checkbox" name="food" value="Biryani"><span>Biryani</span></label>
+        <label class="chip"><input type="checkbox" name="food" value="Fuchka"><span>Fuchka</span></label>
+        <label class="chip"><input type="checkbox" name="food" value="Pizza"><span>Pizza</span></label>
+        <label class="chip"><input type="checkbox" name="food" value="Burger"><span>Burger</span></label>
+        <label class="chip"><input type="checkbox" name="food" value="Chinese"><span>Chinese</span></label>
+        <label class="chip"><input type="checkbox" name="food" value="Ice cream"><span>Ice cream</span></label>
+        <label class="chip"><input type="checkbox" name="food" value="Anything"><span>Anything</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="field">
+      <legend>A few yes or no questions</legend>
+      <div class="yn">
+        <div class="yn-row"><span class="label">Should I pick you up?</span>
+          <span class="seg"><label><input type="radio" name="pickup" value="yes"><span>Yes</span></label><label><input type="radio" name="pickup" value="no"><span>No</span></label></span></div>
+        <div class="yn-row"><span class="label">Should I bring flowers?</span>
+          <span class="seg"><label><input type="radio" name="flowers" value="yes"><span>Yes</span></label><label><input type="radio" name="flowers" value="no"><span>No</span></label></span></div>
+        <div class="yn-row"><span class="label">Can we take photos together?</span>
+          <span class="seg"><label><input type="radio" name="photos" value="yes"><span>Yes</span></label><label><input type="radio" name="photos" value="no"><span>No</span></label></span></div>
+        <div class="yn-row"><span class="label">Dessert after?</span>
+          <span class="seg"><label><input type="radio" name="dessert" value="yes"><span>Yes</span></label><label><input type="radio" name="dessert" value="no"><span>No</span></label></span></div>
+        <div class="yn-row"><span class="label">Stay out a little late?</span>
+          <span class="seg"><label><input type="radio" name="late" value="yes"><span>Yes</span></label><label><input type="radio" name="late" value="no"><span>No</span></label></span></div>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label class="q" for="f-excite">How excited are you?</label>
+      <div class="range-line">
+        <input type="range" id="f-excite" min="1" max="10" value="8">
+        <span class="range-val" id="f-excite-val" aria-hidden="true">8</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="f-note">Anything else I should know?</label>
+      <textarea id="f-note" placeholder="A place you love, something to wear, a song for the ride"></textarea>
+    </div>
+
+    <p class="status" id="err-yes" role="alert" hidden></p>
+    <button class="btn primary" type="submit">Send my answers</button>
+    <button class="back" type="button" data-back>Change my answer</button>
+  </form>
+
+  <form id="s-no" class="panel" hidden novalidate>
+    <h2>That's okay.</h2>
+    <p class="lede">Tell me what would work better and I'll plan around it.</p>
+    <div class="field">
+      <label class="q" for="n-alt">A day that works better <span class="hint">(optional)</span></label>
+      <input type="date" id="n-alt">
+    </div>
+    <div class="field">
+      <label class="q" for="n-note">What would you like instead?</label>
+      <textarea id="n-note" placeholder="Maybe another week, or something different"></textarea>
+    </div>
+    <button class="btn primary" type="submit">Send my answer</button>
+    <button class="back" type="button" data-back>Change my answer</button>
+  </form>
+
+  <section id="s-done" class="panel" hidden aria-live="polite">
+    <h2 id="done-h">Answer ready</h2>
+    <p class="status" id="done-status"></p>
+    <div class="summary" id="done-summary"></div>
+    <div class="actions">
+      <button class="btn primary" type="button" id="btn-copy">Copy my answers</button>
+      <a class="btn quiet" id="btn-cal" href="#" target="_blank" rel="noopener" hidden>Add to Google Calendar</a>
+    </div>
+    <button class="back" type="button" data-back>Edit my answers</button>
+  </section>
+
+  <p class="foot">Made by Avi, for you.</p>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var panels = ["s-ask", "s-yes", "s-no", "s-done"];
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+  var now = new Date();
+  var today = now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate());
+  ["f-date", "f-alt", "n-alt"].forEach(function (id) { $(id).min = today; });
+
+  function show(id) {
+    panels.forEach(function (p) { $(p).hidden = (p !== id); });
+    var el = $(id);
+    if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  $("btn-yes").addEventListener("click", function () { show("s-yes"); });
+  $("btn-no").addEventListener("click", function () { show("s-no"); });
+  document.querySelectorAll("[data-back]").forEach(function (b) {
+    b.addEventListener("click", function () { show("s-ask"); });
+  });
+  $("f-excite").addEventListener("input", function () { $("f-excite-val").textContent = $("f-excite").value; });
+
+  function radio(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : "";
+  }
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var p = iso.split("-");
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return d.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  }
+  function fmtTime(t) {
+    if (!t) return "";
+    var p = t.split(":");
+    var d = new Date(2000, 0, 1, +p[0], +p[1]);
+    return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+  }
+  var ynLabels = {
+    pickup: "Pick you up", flowers: "Bring flowers", photos: "Photos together",
+    dessert: "Dessert after", late: "Stay out late"
+  };
+
+  function summaryText(p) {
+    if (p.answer === "no") {
+      var s = "Her answer: Not this time.";
+      if (p.altDate) s += "\nBetter day: " + fmtDate(p.altDate);
+      if (p.note) s += "\nSaid: " + p.note;
+      return s;
+    }
+    var lines = ["Her answer: YES"];
+    lines.push("Day: " + fmtDate(p.date));
+    lines.push("Time: " + fmtTime(p.time));
+    if (p.altDate) lines.push("Backup day: " + fmtDate(p.altDate));
+    if (p.kind) lines.push("Kind of date: " + p.kind);
+    if (p.food && p.food.length) lines.push("Craving: " + p.food.join(", "));
+    Object.keys(ynLabels).forEach(function (k) {
+      if (p.yn && p.yn[k]) lines.push(ynLabels[k] + ": " + (p.yn[k] === "yes" ? "Yes" : "No"));
+    });
+    lines.push("Excitement: " + p.excitement + " / 10");
+    if (p.note) lines.push("Note: " + p.note);
+    return lines.join("\n");
+  }
+
+  function calUrl(p) {
+    var d = p.date.split("-"), t = p.time.split(":");
+    var s = new Date(+d[0], +d[1] - 1, +d[2], +t[0], +t[1]);
+    var e = new Date(s.getTime() + 2 * 3600 * 1000);
+    function f(x) {
+      return x.getFullYear() + pad(x.getMonth() + 1) + pad(x.getDate()) + "T" + pad(x.getHours()) + pad(x.getMinutes()) + "00";
+    }
+    var title = "Date with Avi" + (p.kind ? " (" + p.kind + ")" : "");
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(title) +
+      "&dates=" + f(s) + "/" + f(e) + "&details=" + encodeURIComponent("Planned together. Can't wait.");
+  }
+
+  function finish(p) {
+    $("done-h").textContent = p.answer === "yes" ? "It's a date" : "Thanks for telling me";
+    $("done-summary").textContent = summaryText(p);
+    var cal = $("btn-cal");
+    if (p.answer === "yes") { cal.href = calUrl(p); cal.hidden = false; } else { cal.hidden = true; }
+    var st = $("done-status");
+    st.className = "status";
+    st.textContent = "Tap Copy my answers and message it to Avi.";
+    show("s-done");
+  }
+
+  $("s-yes").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var err = $("err-yes");
+    if (!$("f-date").value || !$("f-time").value) {
+      err.textContent = "Pick a day and a time first.";
+      err.hidden = false;
+      $("f-date").focus();
+      return;
+    }
+    err.hidden = true;
+    var food = Array.prototype.map.call(document.querySelectorAll('input[name="food"]:checked'), function (i) { return i.value; });
+    var yn = {};
+    Object.keys(ynLabels).forEach(function (k) { yn[k] = radio(k); });
+    finish({
+      answer: "yes",
+      date: $("f-date").value,
+      time: $("f-time").value,
+      altDate: $("f-alt").value,
+      kind: radio("kind"),
+      food: food,
+      yn: yn,
+      excitement: +$("f-excite").value,
+      note: $("f-note").value.trim()
+    });
+  });
+
+  $("s-no").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    finish({
+      answer: "no",
+      altDate: $("n-alt").value,
+      note: $("n-note").value.trim()
+    });
+  });
+
+  $("btn-copy").addEventListener("click", async function () {
+    var text = "Date invite answers\n" + $("done-summary").textContent;
+    var btn = $("btn-copy");
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = "Copied";
+    } catch (e) {
+      var r = document.createRange();
+      r.selectNodeContents($("done-summary"));
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      btn.textContent = "Selected. Copy it now.";
+    }
+    setTimeout(function () { btn.textContent = "Copy my answers"; }, 2200);
+  });
+})();
+</script>
+</body>
+</html>
