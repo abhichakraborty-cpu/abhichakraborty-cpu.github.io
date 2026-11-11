@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Avi Chakraborty's personal portfolio — CSE student, aspiring developer, and lifelong learner.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Avi Chakraborty | Personal Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=QywTYSqHEBDLcHNDfYgr3UWN_MbrCH-ih-GgId-ZVadT4rmwMLXsO6MgRPB5r8ifWabo1pyMY_uPhszIFuVEOem4B0Pc_tROOPIXKo-qOp59yU5FnBalbx7MMwcI591HirWiS-pv49H353sJjSapEShlr7F8r_aVmJL6cJ4bwzjPO78fncK2EnufcmJFMvZwqUUOCghmq76N6fz7dJvWGak-ZeJgGgPxmxv81Br5EP2Nbdt2xupmhSNbYE6ejdK5jKYYAmCyQT92oCvXACce2ySMfhuJya5QCd6XOg7xNQ-uF0Zp1KM4YKbGo9Qs7skJ" charset="UTF-8"></script><style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2e;
+      --panel-2: #17223a;
+      --text: #eef3ff;
+      --muted: #a4b0ca;
+      --line: rgba(255,255,255,.11);
+      --accent: #72e0c1;
+      --accent-2: #7aa8ff;
+      --shadow: 0 24px 70px rgba(0,0,0,.28);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(circle at 85% 8%, rgba(75,123,255,.16), transparent 28rem),
+        radial-gradient(circle at 5% 35%, rgba(57,220,178,.10), transparent 25rem), var(--bg);
+      font-family: "DM Sans", sans-serif; line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(11,16,32,.78); border-bottom: 1px solid var(--line); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font: 700 1.15rem "Space Grotesk", sans-serif; letter-spacing: -.04em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .92rem; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .menu-btn { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 10px; padding: 8px 12px; }
+    .hero { min-height: 660px; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 55px; padding: 85px 0 100px; }
+    .eyebrow { display: inline-flex; gap: 9px; align-items: center; color: var(--accent); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .76rem; }
+    .eyebrow:before { content: ""; width: 26px; height: 1px; background: var(--accent); }
+    h1,h2,h3 { font-family: "Space Grotesk", sans-serif; line-height: 1.12; letter-spacing: -.045em; }
+    h1 { font-size: clamp(3rem, 7vw, 5.6rem); margin: 22px 0; }
+    h1 span { color: var(--accent); }
+    .hero p { max-width: 620px; color: var(--muted); font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 12px; padding: 13px 19px; border: 1px solid var(--line); font-weight: 700; transition: .2s ease; cursor: pointer; }
+    .btn-primary { color: #07151a; background: var(--accent); border-color: var(--accent); }
+    .btn-secondary { background: rgba(255,255,255,.04); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
+    .hero-card { position: relative; padding: 26px; border: 1px solid var(--line); border-radius: 30px; background: linear-gradient(145deg, rgba(23,34,58,.95), rgba(15,23,41,.88)); box-shadow: var(--shadow); overflow: hidden; }
+    .hero-card:before { content: ""; position: absolute; width: 230px; height: 230px; border-radius: 50%; background: rgba(114,224,193,.13); filter: blur(4px); top: -110px; right: -80px; }
+    .avatar { width: 100%; aspect-ratio: 1 / 1.03; border-radius: 22px; display: grid; place-items: center; background: linear-gradient(145deg, #203b55, #18243c 55%, #1c514c); border: 1px solid rgba(255,255,255,.12); position: relative; overflow: hidden; }
+    .avatar .initials { font: 700 clamp(5rem, 13vw, 9rem) "Space Grotesk", sans-serif; color: rgba(238,243,255,.92); letter-spacing: -.1em; }
+    .avatar small { position: absolute; bottom: 18px; color: rgba(238,243,255,.7); letter-spacing: .2em; font-size: .7rem; }
+    .card-meta { display: flex; justify-content: space-between; gap: 12px; padding-top: 20px; color: var(--muted); font-size: .88rem; }
+    .card-meta strong { color: var(--text); display: block; font-size: 1rem; }
+    section { padding: 82px 0; }
+    .section-head { max-width: 650px; margin-bottom: 34px; }
+    .section-head h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin: 12px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(18,26,46,.78); padding: 27px; }
+    .panel p { color: var(--muted); }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .fact { background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 15px; padding: 17px; }
+    .fact small { color: var(--muted); display: block; margin-bottom: 5px; }
+    .fact strong { font-size: .98rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .skill-card h3 { margin: 0 0 12px; font-size: 1.2rem; }
+    .skill-card p { color: var(--muted); font-size: .93rem; margin: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
+    .tag { color: var(--accent); background: rgba(114,224,193,.09); border: 1px solid rgba(114,224,193,.2); padding: 6px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { display: grid; grid-template-columns: 170px 1fr; gap: 22px; }
+    .timeline-date { color: var(--accent); font-weight: 700; padding-top: 4px; }
+    .timeline-content h3 { margin: 0 0 7px; font-size: 1.22rem; }
+    .timeline-content p { color: var(--muted); margin: 0; }
+    .project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .project-card { padding: 25px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(23,34,58,.92), rgba(18,26,46,.8)); }
+    .project-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 13px; color: var(--accent); background: rgba(114,224,193,.1); font-size: 1.3rem; }
+    .project-card h3 { margin: 18px 0 8px; }
+    .project-card p { color: var(--muted); margin: 0; }
+    .project-note { color: var(--muted); font-size: .86rem; margin-top: 18px; }
+    .contact-box { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px; padding: 36px; border-radius: 28px; border: 1px solid rgba(114,224,193,.25); background: linear-gradient(120deg, rgba(114,224,193,.10), rgba(122,168,255,.10)); }
+    .contact-box h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 10px; }
+    .contact-box p { color: var(--muted); margin: 0; }
+    .email-link { color: var(--accent); font-weight: 700; overflow-wrap: anywhere; }
+    footer { padding: 28px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    #topBtn { position: fixed; right: 20px; bottom: 20px; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; color: var(--bg); background: var(--accent); display: none; cursor: pointer; font-size: 1.2rem; z-index: 10; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 65px 0 75px; gap: 35px; }
+      .hero-card { max-width: 430px; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .contact-box { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 30px, 1120px); }
+      nav { min-height: 66px; }
+      .menu-btn { display: block; }
+      .nav-links { display: none; position: absolute; top: 65px; left: 0; right: 0; padding: 18px 22px 22px; background: #10182a; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 15px; }
+      .nav-links.open { display: flex; }
+      h1 { font-size: clamp(2.8rem, 14vw, 4.2rem); }
+      section { padding: 62px 0; }
+      .about-grid, .project-grid, .skills-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 5px; }
+      .panel { padding: 22px; }
+      .contact-box { padding: 25px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">AVI<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <header class="container hero" id="home">
+      <div>
+        <span class="eyebrow">Personal Portfolio</span>
+        <h1>Hi, I'm <span>Avi</span><br>Chakraborty.</h1>
+        <p>I'm a Computer Science and Engineering student interested in technology, programming, and building useful digital experiences. I'm learning step by step and turning ideas into projects.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Explore my work ↗</a>
+          <a class="btn btn-secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="avatar" aria-label="Avi initials placeholder">
+          <span class="initials">AC</span>
+          <small>LEARN • BUILD • GROW</small>
+        </div>
+        <div class="card-meta">
+          <div><strong>CSE Student</strong><span>BGC Trust University</span></div>
+          <div><strong>Bangladesh</strong><span>Open to learning</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">About me</span><h2>A little about my journey.</h2><p>Curiosity keeps me learning. I enjoy exploring technology, improving my skills, and working toward a future in the tech industry.</p></div>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>Who I am</h3>
+            <p>I'm Avi Chakraborty, a first-semester B.Sc. (Hons.) student in Computer Science and Engineering at BGC Trust University Bangladesh. I'm at the beginning of my programming journey and focused on developing a strong foundation in computer science.</p>
+            <p>My previous experience in marketing at PRAN also helped me understand communication, teamwork, and customer-focused work.</p>
+          </article>
+          <div class="panel reveal">
+            <h3>Quick facts</h3>
+            <div class="facts">
+              <div class="fact"><small>Education</small><strong>B.Sc. (Hons.) in CSE</strong></div>
+              <div class="fact"><small>University</small><strong>BGC Trust University</strong></div>
+              <div class="fact"><small>Current stage</small><strong>1st Semester</strong></div>
+              <div class="fact"><small>Location</small><strong>Chattogram, Bangladesh</strong></div>
+              <div class="fact"><small>Experience</small><strong>1 year, Marketing</strong></div>
+              <div class="fact"><small>Interests</small><strong>Web & Programming</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">What I'm learning</span><h2>Skills & interests.</h2><p>This section reflects learning areas and strengths. Add or update items as your experience grows.</p></div>
+        <div class="skills-grid">
+          <article class="panel skill-card reveal"><h3>Programming</h3><p>Building fundamentals through beginner coding exercises and practice.</p><div class="tags"><span class="tag">C++ basics</span><span class="tag">Problem solving</span><span class="tag">Logic building</span></div></article>
+          <article class="panel skill-card reveal"><h3>Web Development</h3><p>Learning how websites are structured, styled, and made interactive.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript basics</span></div></article>
+          <article class="panel skill-card reveal"><h3>Professional Skills</h3><p>Communication and people skills developed through study and work experience.</p><div class="tags"><span class="tag">Communication</span><span class="tag">Teamwork</span><span class="tag">Marketing</span><span class="tag">Time management</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">My background</span><h2>Education & experience.</h2><p>A snapshot of my academic path and professional experience so far.</p></div>
+        <div class="timeline">
+          <article class="panel timeline-item reveal">
+            <div class="timeline-date">Current • 1st Semester</div>
+            <div class="timeline-content"><h3>B.Sc. (Hons.) in Computer Science & Engineering</h3><p>BGC Trust University Bangladesh — building a foundation in computer science, programming, and technology.</p></div>
+          </article>
+          <article class="panel timeline-item reveal">
+            <div class="timeline-date">1 year</div>
+            <div class="timeline-content"><h3>Marketing Experience — PRAN</h3><p>Worked in marketing for one year. This experience helped develop communication, teamwork, and customer interaction skills.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Selected work</span><h2>Projects & practice.</h2><p>I'm building my portfolio as I learn. These are starter project areas; replace them with your real project links as you complete them.</p></div>
+        <div class="project-grid">
+          <article class="project-card reveal"><div class="project-icon">⌘</div><h3>Personal Portfolio Website</h3><p>A responsive personal website built with HTML, CSS, and JavaScript to introduce myself and share my learning journey.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></article>
+          <article class="project-card reveal"><div class="project-icon">∑</div><h3>C++ Programming Practice</h3><p>Beginner programming exercises focused on input/output, calculations, conditions, and loops.</p><div class="tags"><span class="tag">C++</span><span class="tag">Fundamentals</span></div></article>
+        </div>
+        <p class="project-note">Note: These are learning/practice descriptions, not claims of professional or completed client projects.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div><span class="eyebrow">Contact</span><h2>Let's connect.</h2><p>Have a question, idea, or opportunity? Feel free to reach out by email.</p><p style="margin-top:14px"><a class="email-link" href="mailto:avichakraborty0606@gmail.com">avichakraborty0606@gmail.com</a></p></div>
+          <a class="btn btn-primary" href="mailto:avichakraborty0606@gmail.com?subject=Hello%20Avi">Email me ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> Avi Chakraborty. Made with care.</span><a href="#home">Back to top ↑</a></div></footer>
+  <button id="topBtn" aria-label="Back to top">↑</button>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', () => {
+      topBtn.style.display = window.scrollY > 450 ? 'block' : 'none';
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
